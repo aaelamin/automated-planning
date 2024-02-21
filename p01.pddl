@@ -13,23 +13,87 @@
   (:init
 
     ; Hero location and carrying status
+    (hero-at loc-1-2)
 
-    ; Locationg <> Corridor Connections
-
+    
+    ; Location <> Corridor Connections
+    (connects c3132 loc-3-1) 
+    (connects c3132 loc-3-2)
+    
+    (connects c1222 loc-1-2) 
+    (connects c1222 loc-2-2)
+    
+    (connects c2232 loc-2-2) 
+    (connects c2232 loc-3-2)
+    
+    (connects c3242 loc-3-2) 
+    (connects c3242 loc-4-2)
+    
+    (connects c2223 loc-2-2) 
+    (connects c2223 loc-2-3)
+    
+    (connects c3233 loc-3-2) 
+    (connects c3233 loc-3-3)
+    
+    (connects c2333 loc-2-3) 
+    (connects c2333 loc-3-3)
+    
+    (connects c2324 loc-2-3) 
+    (connects c2324 loc-2-4)
+    
+    (connects c3334 loc-3-3) 
+    (connects c3334 loc-3-4)
+    
+    (connects c2434 loc-2-4)
+    (connects c2434 loc-3-4)
+    
+    (connects c3444 loc-3-4)
+    (connects c3444 loc-4-4)
+    
+    
     ; Key locations
+    (key-at key1 loc-2-2) 
+    (key-at key2 loc-2-4) 
+    (key-at key3 loc-4-2) 
+    (key-at key4 loc-4-4) 
 
+    
     ; Locked corridors
+    (has-lock c3132)
+    (has-lock c3242)
+    (has-lock c2324)
+    (has-lock c2434)
+    (has-lock c3444)
+    
 
-    ; Risky corridors
+    ; Corridors colours
+    (cor-colour c3132 rainbow)
+    (cor-colour c3242 purple)
+    (cor-colour c2324 red)     ; Risky Corridors
+    (cor-colour c2434 red)     ; Risky Corridors
+    (cor-colour c3444 yellow)
 
+  
     ; Key colours
+    (key-colour key1 red)       ; Multi-use red key
+    (key-colour key2 yellow)    ; 2-use 
+    (key-colour key3 rainbow)   ; 1-use 
+    (key-colour key4 purple)    ; 1-use 
 
+    
     ; Key usage properties (one use, two use, etc)
+    (has-charge key1)           ; Red key has multiple charges
+    (has-charge key2)           ; First charge for yellow key
+    (has-second-charge key2)    ; Second charge for yellow key
+    (has-charge key3)           ; Single charge for rainbow key
+    (has-charge key4)           ; Single charge for purple key
 
   )
   (:goal
     (and
-      ; Hero's final location goes here
+      ; Hero's final location (treasure room)
+        (hero-at loc-3-1)
+
     )
   )
 
