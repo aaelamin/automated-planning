@@ -22,8 +22,40 @@
         ; One predicate given for free!
         (hero-at ?loc - location)
 
-        ; IMPLEMENT ME
-
+        
+            ; LOCATION PREDICATES
+        ; Whether a location is messy
+        (is-messy ?loc - location)
+        
+            ; CORRIDOR PREDICATES
+        ; Whether a corridor connects to a specified location
+        (connects ?cor - corridor ?loc - location)
+        
+        ; Whether a corridor is locked
+        (has-lock ?cor - corridor)
+        
+        ; Whether a corridor has a certain colour (for lock/key interactions and "risky" corridors)
+        (cor-colour ?cor - corridor ?col - colour)
+        
+            ; HERO PREDICATES
+        ; Whether the hero is currently holding a key
+        (hero-full)
+        
+        ; Whether the hero is holding a particular key
+        (hero-carrying ?k - key)
+        
+            ; KEY PREDICATES
+        ; Whether a key is of a particular colour
+        (key-colour ?k - key ?col - colour)
+        
+        ; Whether a key is at a particular location
+        (key-at ?k - key ?loc - location)
+        
+        ; Whether a key has a charge
+        (has-charge ?k - key)
+        
+        ; Whether a yellow key has a second charge
+        (has-second-charge ?k - key)
     )
 
     ; IMPORTANT: You should not change/add/remove the action names or parameters
@@ -39,15 +71,33 @@
         :parameters (?from ?to - location ?cor - corridor)
 
         :precondition (and
-
+        
             ; IMPLEMENT ME
+            
+            (hero-at ?from)
+            (not (has-lock ?cor))
+            (not (= ?from ?to))
+            (connects ?cor ?from)
+            (connects ?cor ?to)
 
         )
 
         :effect (and
-
+            
             ; IMPLEMENT ME
-
+            ; The hero moves from current location to destination
+            (not (hero-at ?from))
+            (hero-at ?to)
+            ; If the corridor is "risky", it collapses and makes the destination messy
+            (when 
+                (cor-colour ?cor red) 
+                (and 
+                    (not (connects ?cor ?from))
+                    (not (connects ?cor ?to))
+                    (is-messy ?to)
+                )
+            )
+            
         )
     )
 
@@ -62,15 +112,22 @@
         :parameters (?loc - location ?k - key)
 
         :precondition (and
-
+            
             ; IMPLEMENT ME
-
+            
+            (hero-at ?loc)
+            (key-at ?k ?loc)
+            (not (hero-full))
+            (not (is-messy ?loc))
         )
 
         :effect (and
-
+            
             ; IMPLEMENT ME
-
+            
+            (not (key-at ?k ?loc))
+            (hero-full)
+            (hero-carrying ?k)
         )
     )
 
@@ -85,13 +142,18 @@
         :precondition (and
 
             ; IMPLEMENT ME
-
+            
+            (hero-at ?loc)
+            (hero-carrying ?k)
         )
 
         :effect (and
 
             ; IMPLEMENT ME
-
+            
+            (not (hero-carrying ?k))
+            (not (hero-full))
+            (key-at ?k ?loc)
         )
     )
 
@@ -111,13 +173,43 @@
         :precondition (and
 
             ; IMPLEMENT ME
-
+            (hero-at ?loc)
+            (hero-carrying ?k)
+            (connects ?cor ?loc)
+            
+            (key-colour ?k ?col)
+            (cor-colour ?cor ?col)
+            (has-lock ?cor)
         )
 
         :effect (and
 
             ; IMPLEMENT ME
-
+            (not (has-lock ?cor))
+            ; If the key has only one charge left, the charge is consumed
+            (when
+                (and
+                    (not (key-colour ?k red))
+                    (not (key-colour ?k yellow))
+                    (has-charge ?k)
+                )
+                (not (has-charge ?k))
+            )
+            ; If the key is yellow, the second charge is consumed in place of the first if possible
+            (when
+                (and
+                    (key-colour ?k yellow)
+                    (not (has-second-charge ?k))
+                )
+                (not (has-charge ?k))
+            )
+            (when
+                (and
+                    (key-colour ?k yellow)
+                    (has-second-charge ?k)
+                )
+                (not (has-second-charge ?k))
+            )
         )
     )
 
@@ -130,15 +222,16 @@
         :parameters (?loc - location)
 
         :precondition (and
-
+        
             ; IMPLEMENT ME
-
+            (hero-at ?loc)
+            (is-messy ?loc)
         )
 
         :effect (and
 
             ; IMPLEMENT ME
-
+            (not (is-messy ?loc))
         )
     )
 
