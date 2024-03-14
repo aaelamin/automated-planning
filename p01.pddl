@@ -53,40 +53,45 @@
     
     ; Key locations
     (key-at key1 loc-2-2) 
+    (key-colour key1 red)       ; Multi-use red key
+
     (key-at key2 loc-2-4) 
+    (key-colour key2 yellow)    ; 2-use 
+
     (key-at key3 loc-4-2) 
+    (key-colour key3 rainbow)   ; 1-use 
+
     (key-at key4 loc-4-4) 
+    (key-colour key4 purple)    ; 1-use 
+
 
     
     ; Locked corridors
     (has-lock c3132)
-    (has-lock c3242)
-    (has-lock c2324)
-    (has-lock c2434)
-    (has-lock c3444)
-    
-
-    ; Corridors colours
     (cor-colour c3132 rainbow)
+
+    (has-lock c3242)
     (cor-colour c3242 purple)
+
+    (has-lock c2324)
     (cor-colour c2324 red)     ; Risky Corridors
+
+    (has-lock c2434)
     (cor-colour c2434 red)     ; Risky Corridors
+
+    (has-lock c3444)
     (cor-colour c3444 yellow)
 
+    
+
+    ; Corridors colours (defined above)
+
   
-    ; Key colours
-    (key-colour key1 red)       ; Multi-use red key
-    (key-colour key2 yellow)    ; 2-use 
-    (key-colour key3 rainbow)   ; 1-use 
-    (key-colour key4 purple)    ; 1-use 
+    ; Key colours (defiend above)
 
     
-    ; Key usage properties (one use, two use, etc)
-    (has-charge key1)           ; Red key has multiple charges
-    (has-charge key2)           ; First charge for yellow key
-    (has-second-charge key2)    ; Second charge for yellow key
-    (has-charge key3)           ; Single charge for rainbow key
-    (has-charge key4)           ; Single charge for purple key
+    ; Key usage properties (one use, two use, etc) (defined in domain file)
+
 
   )
   (:goal

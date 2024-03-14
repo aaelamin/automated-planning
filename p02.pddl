@@ -32,40 +32,42 @@
     (connects c2223 loc-2-3)
 
     ; Key locations
-    (key-at key1 loc-2-1) ; green key
-    (key-at key2 loc-1-2) ; rainbow key
-    (key-at key3 loc-2-2) ; purple key
-    (key-at key4 loc-2-3) ; yellow key
+    (key-at key1 loc-2-1) 
+    (key-colour key1 green)      ; 1-use 
+
+    (key-at key2 loc-1-2) 
+    (key-colour key2 rainbow)    ; treasure key
+
+    
+    (key-at key3 loc-2-2) 
+    (key-colour key3 purple)     ; 1-use key
+    
+    (key-at key4 loc-2-3) 
+    (key-colour key4 yellow)     ; 2-use key
+
     
 
     ; Locked corridors
     (has-lock c2122) 
-    (has-lock c1222) 
-    (has-lock c2232) 
-    (has-lock c3242)
-    (has-lock c2223)
-
-    ; Corridors/locks colours
     (cor-colour c2122 purple)
+    
+    (has-lock c1222) 
     (cor-colour c1222 yellow)
+
+    (has-lock c2232)
     (cor-colour c2232 yellow)
+
+    (has-lock c3242)
     (cor-colour c3242 rainbow)
+
+    (has-lock c2223)
     (cor-colour c2223 green)
 
-    ; Key colours
-    (key-colour key1 green)      ; 1-use 
-    (key-colour key2 rainbow)    ; treasure key
-    (key-colour key3 purple)     ; 1-use key
-    (key-colour key4 yellow)     ; 2-use key
 
+    ; Corridors colours (defined above)
+    
 
-    ; Key usage properties (one use, two use, etc)
-    (has-charge key1)           ; First charge for green key
-    (has-charge key2)           ; First charge for rainbow key
-    (has-charge key3)           ; Single charge for purple key
-    (has-charge key4)           ; First charge for yellow key
-    (has-second-charge key4)    ; Second charge for yellow key
-
+  
 
   )
   (:goal

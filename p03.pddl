@@ -13,23 +13,133 @@
   (:init
 
     ; Hero location and carrying status
+    (hero-at loc-2-1)
+    (not (hero-full))
 
-    ; Locationg <> Corridor Connections
+    ; Location <> Corridor Connections
+    (connects c2122 loc-2-1)
+    (connects c2122 loc-2-2)
+    
+    (connects c1222 loc-1-2)
+    (connects c1222 loc-2-2)
+    
+    (connects c2232 loc-2-2)
+    (connects c2232 loc-3-2)
+    
+    (connects c1213 loc-1-2)
+    (connects c1213 loc-1-3)
+    
+    (connects c1223 loc-1-2)
+    (connects c1223 loc-2-3)
+    
+    (connects c2223 loc-2-2)
+    (connects c2223 loc-2-3)
 
+    (connects c3223 loc-3-2)
+    (connects c3223 loc-2-3)
+    
+    (connects c3233 loc-3-2)
+    (connects c3233 loc-3-3)
+    
+    (connects c1323 loc-1-3)
+    (connects c1323 loc-2-3)
+    
+    (connects c2333 loc-2-3)
+    (connects c2333 loc-3-3)
+    
+    (connects c1314 loc-1-3)
+    (connects c1314 loc-1-4)
+    
+    (connects c2314 loc-2-3)
+    (connects c2314 loc-1-4)
+    
+    (connects c2324 loc-2-3)
+    (connects c2324 loc-2-4)
+    
+    (connects c2334 loc-2-3)
+    (connects c2334 loc-3-4)
+    
+    (connects c3334 loc-3-3)
+    (connects c3334 loc-3-4)
+    
+    (connects c1424 loc-1-4)
+    (connects c1424 loc-2-4)
+    
+    (connects c2434 loc-2-4)
+    (connects c2434 loc-3-4)
+    
+    (connects c2425 loc-2-4)
+    (connects c2425 loc-2-5)
+    
+    (connects c2535 loc-2-5)
+    (connects c2535 loc-3-5)
+    
+    (connects c3545 loc-3-5)
+    (connects c3545 loc-4-5)
+    
+    (connects c4544 loc-4-5)
+    (connects c4544 loc-4-4)
+    
+    (connects c4443 loc-4-4)
+    (connects c4443 loc-4-3)
+    
     ; Key locations
-
+    (key-at key1 loc-2-1)   
+    (key-colour key1 red)
+    
+    (key-at key2 loc-2-3)   
+    (key-colour key2 green)
+    (key-at key3 loc-2-3)   
+    (key-colour key3 green)
+    (key-at key4 loc-2-3)   
+    (key-colour key4 purple)
+    (key-at key5 loc-2-3)   
+    (key-colour key5 purple)
+    
+    (key-at key6 loc-4-4)   
+    (key-colour key6 rainbow)
+    
     ; Locked corridors
+    (has-lock c1223)    
+    (cor-colour c1223 red)
+    (has-lock c2223)    
+    (cor-colour c2223 red)
+    (has-lock c3223)    
+    (cor-colour c3223 red)
+    (has-lock c1323)    
+    (cor-colour c1323 red)
+    (has-lock c2333)    
+    (cor-colour c2333 red)
+    (has-lock c2314)    
+    (cor-colour c2314 red)
+    (has-lock c2324)    
+    (cor-colour c2324 red)
+    (has-lock c2334)    
+    (cor-colour c2334 red)
+    
+    (has-lock c2425)    
+    (cor-colour c2425 purple)
+    (has-lock c2535)    
+    (cor-colour c2535 green)
+    (has-lock c3545)    
+    (cor-colour c3545 purple)
+    (has-lock c4544)    
+    (cor-colour c4544 green)
+    
+    (has-lock c4443)    
+    (cor-colour c4443 rainbow)
+    
+    ; Risky corridors (HANDLED ABOVE - red corridors are 'risky')
 
-    ; Risky corridors
+    ; Key colours (HANDLED ABOVE)
 
-    ; Key colours
-
-    ; Key usage properties (one use, two use, etc)
+    ; Key usage properties (one use, two use, etc) (HANDLED IN DOMAIN - Key properties assigned to key colours)
 
   )
   (:goal
     (and
       ; Hero's final location goes here
+      (hero-at loc-4-3)
     )
   )
 
